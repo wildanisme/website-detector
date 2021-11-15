@@ -8,15 +8,36 @@ from flask import request
 from flask import url_for
 
 from flask_bootstrap import Bootstrap
-#library untuk visualisasi
+# library untuk visualisasi
 import numpy as np
 
 app = Flask(__name__, static_folder='static')
 bootstrap = Bootstrap(app)
 app.config['UPLOAD_FOLDER'] = 'static'
 
-@app.route("/")
-def index():
-    return render_template('home.html')
-    # return "<p>Hello, World!</p>"
-    
+# index
+
+
+@app.route('/', methods=['GET', 'POST'])
+def index(domain=None):
+    if request.method == 'POST':
+        domain = request.form.get('domain')
+    return render_template('home.html',
+                           site='Home',
+                           title='Sistem Pendeteksi Situs Bermuatan Konten Negatif Menggunakan Machine Learning',
+                           domain=domain)
+
+
+# prediksi url yang dimasukkan
+
+@app.route('/prediksi', methods=['POST'])
+def predict():
+    if request.method == 'POST':
+        domain = request.form.get('domain')
+        api = 'https://website-categorization.whoisxmlapi.com/api/v2?apiKey=at_Uw8qzawOHo1ziJNmCP85ngUozQ9P4&domainName='
+        domain = api+domain
+        return
+    # return render_template('predict.html',
+    #                        site='Hasil Periksa',
+    #                        title='Sistem Pendeteksi Situs Bermuatan Konten Negatif Menggunakan Machine Learning',
+    #                        domain=domain)
