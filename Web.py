@@ -34,10 +34,10 @@ def index(domain=None):
 def predict():
     if request.method == 'POST':
         domain = request.form.get('domain')
-        api = 'https://website-categorization.whoisxmlapi.com/api/v2?apiKey=at_Uw8qzawOHo1ziJNmCP85ngUozQ9P4&domainName='
-        domain = api+domain
-        return
-    # return render_template('predict.html',
-    #                        site='Hasil Periksa',
-    #                        title='Sistem Pendeteksi Situs Bermuatan Konten Negatif Menggunakan Machine Learning',
-    #                        domain=domain)
+        # api = 'https://website-categorization.whoisxmlapi.com/api/v2?apiKey=at_Uw8qzawOHo1ziJNmCP85ngUozQ9P4&domainName='
+        # domain = api+domain
+        # return
+    return render_template('predict.html',
+                           site='Hasil Periksa',
+                           title='Sistem Pendeteksi Situs Bermuatan Konten Negatif Menggunakan Machine Learning',
+                           domain=domain)
